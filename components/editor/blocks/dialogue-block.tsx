@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { GripVertical, Trash2, MessageSquare, User, Sparkles, ChevronDown } from 'lucide-react'
+import { GripVertical, Trash2, MessageSquare, User, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -28,11 +28,6 @@ export function DialogueBlock({
   dragHandleProps 
 }: DialogueBlockProps) {
   const [isEditingContent, setIsEditingContent] = useState(false)
-
-  const handleAIAssist = () => {
-    // Placeholder for AI functionality
-    console.log('[v0] AI assist triggered for dialogue block:', block.id)
-  }
 
   return (
     <div className="group relative flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-muted-foreground/30">
@@ -77,16 +72,6 @@ export function DialogueBlock({
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleAIAssist}
-            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <Sparkles className="h-3 w-3" />
-            AI
-          </Button>
         </div>
 
         {isEditingContent ? (

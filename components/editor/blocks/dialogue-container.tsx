@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { GripVertical, Trash2, MessageSquare, User, Sparkles, ChevronDown, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
@@ -53,10 +53,6 @@ function SortableDialogueLine({ block, onUpdate, onDelete, characters }: Dialogu
     opacity: isDragging ? 0.5 : 1,
   }
 
-  const handleAIAssist = () => {
-    console.log('[v0] AI assist triggered for dialogue line:', block.id)
-  }
-
   return (
     <div 
       ref={setNodeRef} 
@@ -97,16 +93,6 @@ function SortableDialogueLine({ block, onUpdate, onDelete, characters }: Dialogu
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleAIAssist}
-            className="h-5 gap-1 px-1.5 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <Sparkles className="h-3 w-3" />
-            AI
-          </Button>
         </div>
 
         {isEditingContent ? (
@@ -147,6 +133,7 @@ interface DialogueContainerProps {
   onDeleteBlock: (blockId: string) => void
   onReorderDialogues: (fromIndex: number, toIndex: number) => void
   onAddDialogue: () => void
+  onAIGenerate?: () => void
   dragHandleProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
@@ -157,8 +144,12 @@ export function DialogueContainer({
   onDeleteBlock,
   onReorderDialogues,
   onAddDialogue,
+  onAIGenerate,
   dragHandleProps,
 }: DialogueContainerProps) {
+  // Use a stable ID to prevent hydration mismatch
+  const dndContextId = useId()
+  
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -198,18 +189,30 @@ export function DialogueContainer({
           <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Dialogue
           </span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onAddDialogue}
-            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <Plus className="h-3 w-3" />
-            Add Line
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onAIGenerate}
+              className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <Sparkles className="h-3 w-3" />
+              AI Generate
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onAddDialogue}
+              className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <Plus className="h-3 w-3" />
+              Add Line
+            </Button>
+          </div>
         </div>
 
         <DndContext
+          id={dndContextId}
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}

@@ -24,6 +24,7 @@ function SortableItem({
   onDeleteBlock,
   onReorderDialogues,
   onAddDialogue,
+  onAIGenerate,
 }: {
   item: GroupedItem
   characters: string[]
@@ -31,6 +32,7 @@ function SortableItem({
   onDeleteBlock: (id: string) => void
   onReorderDialogues: (from: number, to: number) => void
   onAddDialogue: () => void
+  onAIGenerate: () => void
 }) {
   const id = groupItemId(item)
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id })
@@ -53,6 +55,7 @@ function SortableItem({
           onDeleteBlock={onDeleteBlock}
           onReorderDialogues={onReorderDialogues}
           onAddDialogue={onAddDialogue}
+          onAIGenerate={onAIGenerate}
           dragHandleProps={dragHandleProps}
         />
       </div>
@@ -115,6 +118,11 @@ export function BlockList() {
 
   const handleAddDialogue = () => addBlock(selectedScene.id, 'dialogue')
 
+  const handleAIGenerate = () => {
+    // TODO: Open AI dialogue generator modal/panel
+    console.log('AI Dialogue Generator triggered for scene:', selectedScene.id)
+  }
+
   return (
     <SortableContext items={sortableIds} strategy={verticalListSortingStrategy}>
       <div className="flex flex-col">
@@ -130,6 +138,7 @@ export function BlockList() {
               onDeleteBlock={handleDeleteBlock}
               onReorderDialogues={handleReorderDialogues}
               onAddDialogue={handleAddDialogue}
+              onAIGenerate={handleAIGenerate}
             />
             {/* Gap after each item — always mounted so useDroppable registers */}
             <DropGap
