@@ -2,7 +2,6 @@
 
 import { EditorHeader } from '@/components/editor/editor-header'
 import { SceneEditorTitle } from '@/components/editor/scene-editor-title'
-import { SceneBlockHeader } from '@/components/editor/scene-block-header'
 import { BlockList } from '@/components/editor/block-list'
 import { BlockPaletteSidebar } from '@/components/editor/block-palette-sidebar'
 import { EditorDndProvider } from '@/components/editor/editor-dnd-context'
@@ -25,7 +24,6 @@ export default function SceneEditorPage() {
             {selectedScene && (
               <>
                 <SceneEditorTitle />
-                <SceneBlockHeader />
 
                 <ScrollArea className="flex-1">
                   <div className="mx-auto max-w-3xl px-6 py-6">

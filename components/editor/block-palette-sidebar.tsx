@@ -21,7 +21,7 @@ function DraggablePaletteItem({
       ref={setNodeRef}
       {...listeners}
       {...attributes}
-      className={`group flex cursor-grab flex-col items-center gap-2 rounded-lg border border-border bg-card p-3 text-xs font-medium transition-colors hover:bg-muted active:cursor-grabbing select-none ${isDragging ? 'opacity-40' : ''}`}
+      className={`group flex cursor-grab flex-col items-center gap-2 rounded-lg border border-border bg-muted/40 p-3 text-xs font-medium transition-colors hover:bg-muted/60 active:cursor-grabbing select-none ${isDragging ? 'opacity-40' : ''}`}
       title={`Drag to add ${label}`}
     >
       <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${bg}`}>

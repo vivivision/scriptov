@@ -17,7 +17,7 @@ export function ActionBlock({ block, onUpdate, onDelete, dragHandleProps }: Acti
   const [isEditing, setIsEditing] = useState(false)
 
   return (
-    <div className="group relative flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-muted-foreground/30">
+    <div className="group relative flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4 transition-all hover:border-muted-foreground/30">
       <div 
         {...dragHandleProps}
         className="flex cursor-grab items-center self-stretch text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
