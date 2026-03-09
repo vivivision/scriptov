@@ -12,7 +12,7 @@ interface PauseBlockProps {
 
 export function PauseBlock({ block: _block, onDelete, dragHandleProps }: PauseBlockProps) {
   return (
-    <div className="group relative flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-all hover:border-muted-foreground/30">
+    <div className="group relative flex items-center gap-3 rounded-lg border border-border bg-muted/40 p-3 transition-all hover:border-muted-foreground/30">
       <div 
         {...dragHandleProps}
         className="flex cursor-grab items-center text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"

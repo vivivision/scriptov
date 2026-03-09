@@ -1,5 +1,6 @@
 'use client'
 
+import { useId } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -114,6 +115,9 @@ export function EditorDndProvider({ children }: { children: React.ReactNode }) {
   const [activeItem, setActiveItem] = useState<Active | null>(null)
   const [overGapIndex, setOverGapIndex] = useState<number | null>(null)
 
+  // Use a stable ID to prevent hydration mismatch between server and client
+  const dndContextId = useId()
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
@@ -188,6 +192,7 @@ export function EditorDndProvider({ children }: { children: React.ReactNode }) {
       isDraggingBlock,
     }}>
       <DndContext
+        id={dndContextId}
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragStart={handleDragStart}

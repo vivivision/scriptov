@@ -6,6 +6,9 @@ export interface Block {
   content: string
   characterName?: string
   order: number
+  // Audio properties for ambience blocks
+  audioUrl?: string
+  audioType?: 'preset' | 'custom'
 }
 
 export interface Scene {
