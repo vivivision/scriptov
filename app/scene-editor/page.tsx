@@ -1,6 +1,7 @@
 'use client'
 
 import { EditorHeader } from '@/components/editor/editor-header'
+import { SceneEditorTitle } from '@/components/editor/scene-editor-title'
 import { SceneBlockHeader } from '@/components/editor/scene-block-header'
 import { BlockList } from '@/components/editor/block-list'
 import { BlockPaletteSidebar } from '@/components/editor/block-palette-sidebar'
@@ -23,6 +24,7 @@ export default function SceneEditorPage() {
           <div className="flex flex-1 flex-col overflow-hidden">
             {selectedScene && (
               <>
+                <SceneEditorTitle />
                 <SceneBlockHeader />
 
                 <ScrollArea className="flex-1">
