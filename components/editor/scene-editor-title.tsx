@@ -145,11 +145,11 @@ export function SceneEditorTitle() {
   }
 
   return (
-    <div className="border-b border-border bg-card/50 px-6 py-4">
+    <div className="border-b border-border bg-muted/40 px-6 py-4">
       <div className="flex flex-col gap-3">
         {/* Scene Number, Title and Description Row */}
         <div className="flex items-start gap-3">
-          <Badge variant="outline" className="shrink-0 bg-primary/10 text-primary">
+          <Badge variant="outline" className="shrink-0 border-primary/30 bg-primary/10 text-primary">
             Scene {sceneNumber}: {selectedScene.title}
           </Badge>
           
@@ -161,7 +161,7 @@ export function SceneEditorTitle() {
                 onChange={(e) => setEditedDescription(e.target.value)}
                 onBlur={handleDescriptionSave}
                 onKeyDown={handleDescriptionKeyDown}
-                className="h-7 bg-background/50 text-sm"
+                className="h-7 border-muted-foreground/20 bg-muted/60 text-sm"
                 placeholder="Add a short description to your scene"
               />
             ) : (
@@ -184,7 +184,7 @@ export function SceneEditorTitle() {
         {/* Place and Characters Row */}
         <div className="flex flex-wrap items-center gap-4">
           {/* Place Selector */}
-          <div className="flex items-center gap-2 rounded-md bg-background/50 px-2 py-1">
+          <div className="flex items-center gap-2 rounded-md border border-border/50 bg-secondary/50 px-2 py-1">
             <MapPin className="h-4 w-4 text-muted-foreground" />
             {isEditingPlace ? (
               <Input
@@ -247,7 +247,7 @@ export function SceneEditorTitle() {
           <div className="h-4 w-px bg-border" />
 
           {/* Characters */}
-          <div className="flex items-center gap-2 rounded-md bg-background/50 px-2 py-1">
+          <div className="flex items-center gap-2 rounded-md border border-border/50 bg-secondary/50 px-2 py-1">
             <Users className="h-4 w-4 text-muted-foreground" />
             <div className="flex flex-wrap items-center gap-1.5">
               {selectedScene.characters.map((character) => (
